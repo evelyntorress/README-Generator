@@ -8,13 +8,18 @@ const questions = () => {
     return inquirer.prompt([
       {
         type: 'input',
+        name: 'projecttitle',
+        message: 'What is your Project title?',
+      },
+      {
+        type: 'input',
         name: 'description',
-        message: 'Description',
+        message: 'Description of your project:',
       },
       {
         type: 'input',
         name: 'installation',
-        message: 'Installation',
+        message: 'Instructions for installation:',
       },
       {
         type: 'input',
@@ -22,29 +27,50 @@ const questions = () => {
         message: 'Usage',
       },
       {
-        type: 'input',
-        name: 'website',
-        message: 'Link to the WebSite',
-      },
-      {
-        type: 'input',
-        name: 'video',
-        message: 'Link to the video',
-      },
-      {
-        type: 'input',
+        type: 'list',
         name: 'license',
-        message: 'License',
+        message: 'What kind of license are you going to use?',
+        choices: ['agpl', 'apache', 'MIT', 'no license']
+      },
+      {
+        type: 'input',
+        name: 'contributing',
+        message: 'List of contributors?:',
+      },
+      {
+        type: 'input',
+        name: 'test',
+        message: 'How many tests have been used for this app?:',
+      },
+      {
+        type: 'input',
+        name: 'githubuser',
+        message: 'Enter your GitHub user',
+      },
+      {
+        type: 'input',
+        name: 'email',
+        message: 'Enter your email for users to contact you :',
       },
     ]);
   };
   
 // TODO: Create a function to write README file
-const generateMarkdown = ({ description, installation, usage, website, video, license }) =>
-// function writeToFile(fileName, data) {}
-`# crispy-rotary-phone
+const generateMarkdown = ({ projecttitle, description, installation, usage, license, contributing, test, githubuser, email }) =>
 
-# 09 Node.js Challenge: Professional README Generator
+`
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+# ${projecttitle}
+
+## Table of contents
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Testing](#testing)
+- [Questions](#questions)
 
 ## Description
 ${description}
@@ -55,14 +81,41 @@ ${installation}
 ## Usage
 ${usage}
 
-## Link to the web-site
-${website}
-
-## Link to the video
-${video}
-
 ## License
-${license}`;
+${license}
+
+Copyright (c) [year] [fullname]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+## Contributing
+${contributing}
+
+## Testing
+${test}
+
+## Questions
+ - ${githubuser} - [GitHub](https://github.com/evelyntorress)
+ - You can contact me at ${email}
+
+
+`;
 
 // TODO: Create a function to initialize app
 function init() {
